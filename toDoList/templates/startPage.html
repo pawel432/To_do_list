@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <title>Start page</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'startPageStyle.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>
+                Start page
+            </h1>
+        </header>
+        <main>
+            <div class="container">
+                <a href="{% url 'sign_render' template='signIn.html'%}">
+                    <div class="buttonClass">
+                        <p>Sign In</p>
+                    </div>
+                </a>
+                <a href="{% url 'sign_render' template='signUp.html'%}">
+                    <div class="buttonClass">
+                        <p>Sign Up</p>
+                    </div>
+                </a>
+            </div>
+
+        </main>
+        <footer></footer>
+    </body>
+</html> 

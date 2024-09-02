@@ -1,0 +1,78 @@
+body
+{
+    display: grid;
+    grid-template-rows: 20% 60% 20%;
+    height: 900px;
+    background-color: black;
+    color: white;
+}
+
+header
+{
+    grid-row: 1;
+    text-align: center;
+}
+
+main
+{
+    grid-row: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+footer
+{
+    grid-row: 3;
+}
+
+.container
+{
+    display: flex;
+    gap: 30%
+}
+
+.buttonClass
+{
+    display: inline-block;
+    height: 130%;  
+    width: 200px;
+    background-color: #4cb03f;
+    border-radius: 20px;
+    font-weight: 900;
+    font-size: 160%;
+    color: #efefef;
+    border: 1px solid white;
+    text-decoration: none;
+    text-align: center;
+}
+
+.buttonClass
+{
+    position: relative;
+    right: 30%;
+}
+
+.buttonClass:hover
+{
+    background-color: #a9ff9d;
+    color: #484848;
+}
+
+.buttonClass p
+{
+    position: relative;
+    top: 8%;
+}
+
+header h1
+{
+    font-size: 400%;
+}
+
+
+
+
+
+
+

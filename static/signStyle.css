@@ -1,0 +1,166 @@
+body
+{
+    display: grid;
+    grid-template-rows: 20% 90% 10%;
+    height: 900px;
+    background-color: black;
+    color: white;
+}
+
+header
+{
+    grid-row: 1;
+    text-align: center;
+    display: inline-block;
+}
+
+header a
+{
+    text-decoration: none;
+    color: #4cb03f;
+}
+
+header a:hover
+{
+    color: #a9ff9d;
+}
+
+header p
+{
+    font-size: 120%;
+}
+
+
+header h1
+{
+    font-size: 250%;
+}
+
+main
+{
+    grid-row: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+footer
+{
+    grid-row: 3;
+}
+
+.signInForm
+{
+    margin-bottom: 10%;
+    font-weight: 900;
+    font-size: 190%;
+    background-color:  #5b5b5b ;
+    width: 35%;
+    height: 60%;
+    padding-top: 0.4%;
+    padding-bottom: 3%;
+    border-radius: 6%;
+    text-align: center;
+    border: 5px solid white;
+}   
+
+.signUpForm
+{
+    margin-bottom: 7%;
+    font-weight: 600;
+    font-size: 20px;
+    background-color:  #5b5b5b ;
+    width: 30%;
+    height: 86%;
+    padding-top: 0.3%;
+    padding-bottom: 2.5%;
+    border-radius: 40px;
+    text-align: center;
+    border: 5px solid white;
+}
+
+.signUpForm label
+{
+    display: block;
+}
+
+.signUpForm input
+{
+    background-color:  #a4a4a4;
+    color: white;
+    height: 60px;
+    width: 58.5%;
+    border-radius: 20px;
+    font-size: 25px;
+    font-weight: 900;
+    
+}
+
+.signUpForm input:hover
+{
+    background-color:  #c8c8c8 ;
+}
+
+.signUpForm input:focus
+{
+    background-color:  #c8c8c8 ;
+}
+
+.signInForm input
+{
+    background-color:  #a4a4a4;
+    color: white;
+    height: 60px;
+    width: 53%;
+    border-radius: 20px;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.signInForm input:hover
+{
+    background-color:  #c8c8c8 ;
+}
+
+.signInForm input:focus
+{
+    background-color:  #c8c8c8 ;
+}
+
+button
+{  
+    width: 30%;
+    height: 70px;
+    font-size: 20px;
+    background-color: #4cb03f;
+    border-radius: 18px;
+    font-weight: 900;
+    font-size: 25px;
+    color: #efefef;
+    border: 1px solid white;
+    text-align: center;
+}
+
+.signInForm label
+{
+    display: block;
+}
+
+
+button:hover
+{
+    background-color: #a9ff9d;
+    color: #484848;
+}
+
+.errorSignIn
+{
+    color: rgb(235, 54, 54);
+    margin: 4%;
+}
+
+.errorSignUp
+{
+    color: rgb(235, 54, 54);
+    margin: 2%;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <title>Sign In</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'signStyle.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Sign In</h1>
+        <p>You don't have an account? <a href="{% url 'sign_render' template='signUp.html'%}">Sign Up</a></p>
+    </header>
+    <main>
+        <div class="signInForm">
+            <h2>Sign In</h2>
+                <form method="post" action="{% url 'sign_in' %}">
+                    {% csrf_token %}
+                    {{ signInForm.as_p }}
+                    <button type="submit">Sign in</button>
+                </form>
+                <p class="errorSignIn">{{error}}</p>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>

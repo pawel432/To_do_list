@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <title>Main page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'mainPageStyle.css' %}">
+</head>
+<body>
+    <header>
+        <div class="headersButtons"></div>
+            <button type="submit" class="backOrNextButton"><</button>
+            <button type="submit" class="backOrNextButton">></button>
+        <p class="monthAndYearName">
+            Month name / Year
+        </p>
+    </header>
+    <main>
+        <section id="left">
+            <a href="youtube.com">
+                <div class="guzik"></div>
+            </a>
+        </section>
+        <section id="right">
+            {% for week in date %}
+                {% for day in week %}
+                    <a href="{% url 'add_task_page' month=month day=day year=year %}">
+                        <div class="day">{{day}}</div>
+                    </a>
+                {% endfor %}
+            {% endfor %}
+        </section>
+    </main>
+</body>
+</html>

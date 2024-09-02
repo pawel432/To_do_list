@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: haslo
+      MYSQL_DATABASE: toDoListBase
+    ports:
+      - 3307:3306
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8083:8080
