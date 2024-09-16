@@ -1,14 +1,14 @@
-from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+import datetime
+
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 
 from appUser.models import CustomUser
-from appUser.renderViews import signErrorRender, startPageRender
+from appUser.renderViews import signErrorRender
 from toDoList.forms import SignInForm, SignUpForm
 
 
 # Create your views here.
-
 
 def signUp(request):
     form = SignUpForm(request.POST)
@@ -49,15 +49,12 @@ def authorizeUser(request, username, password):
     authorizedUser = authenticate(request, username=username, password=password)
     if authorizedUser is not None:
         login(request, authorizedUser)
-        return redirect('main_page')
+        return redirect('main_page', next_months=0, month=datetime.datetime.now().month,
+                        year=datetime.datetime.now().year)
     else:
         return signErrorRender(request, "signIn.html", "Invalid password.")
 
 
-def logOut(request):
-    user = request.CustomUser
-    if user.is_authenticated:
-        logOut(request)
-        return startPageRender(request)
-    else:
-        return HttpResponse("The user is unauthorized", status=401)
+def signOut(request):
+    logout(request)
+    return redirect('home')

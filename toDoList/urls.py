@@ -19,16 +19,17 @@ from django.urls import path
 
 from appCalendar.renderViews import mainPageRender, addTaskPageRender
 from appUser.renderViews import startPageRender, signRender, signErrorRender
-from appUser.views import signIn, signUp, logOut
+from appUser.views import signIn, signUp, signOut
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', startPageRender, name='home'),
     path('signin/', signIn, name='sign_in'),
     path('signup/', signUp, name='sign_up'),
-    path('logout/', logOut, name='log_out'),
+    path('signout/', signOut, name='sign_out'),
     path('sign/<str:template>/', signRender, name='sign_render'),
     path('signerror/<str:template>/', signErrorRender, name='sign_error_render'),
-    path('mainpage/', mainPageRender, name='main_page'),
-    path('addtaskpage/<int:month>/<int:day>/<int:year>/', addTaskPageRender, name='add_task_page')
+    path('mainpage/<str:next_months>/<int:month>/<int:year>/', mainPageRender, name='main_page'),
+    path('addtaskpage/<int:month>/<int:day>/<int:year>/', addTaskPageRender, name='add_task_page'),
+    path('logout/', signOut, name='logout'),
 ]

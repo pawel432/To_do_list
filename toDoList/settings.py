@@ -146,3 +146,4 @@ LOGGING = {
         "level": "INFO",
     },
 }
+LOGIN_URL = 'home'

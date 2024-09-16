@@ -1,0 +1,73 @@
+body
+{
+    display: grid;
+    grid-template-rows: 10% 90%;
+    height: 900px;
+    background-color: black;
+    color: white;
+}
+
+body a
+{
+    text-decoration: none;
+}
+
+header
+{
+    grid-row: 1;
+    text-align: center;
+}
+
+main
+{
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 5% 95%;
+}
+
+#left
+{
+    grid-column: 1;
+}
+
+#right
+{
+    grid-column: 2;
+}
+
+.leftButtons
+{
+    display: block;
+    margin-top: 35%;
+    margin-left: 5%;
+    font-weight: 900;
+    font-size: 90%;
+    color: rgb(207, 207, 207);
+    text-decoration: none;
+    position: relative;
+    top: 18%;
+}
+
+.leftButtons:hover
+{
+    color: #4cb03f;
+}
+
+.addTaskButton
+{
+    width: 4%;
+    height: 30px;
+    background-color: #4cb03f;
+    border-radius: 12px;
+    font-weight: 900;
+    /* font-size: 25px; */
+    color: #efefef;
+    border: 1px solid white;
+    text-align: center;
+}
+
+.addTaskButton:hover
+{
+    background-color: #a9ff9d;
+    color: #484848;
+}
