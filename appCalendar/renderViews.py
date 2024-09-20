@@ -1,9 +1,13 @@
 import calendar
+import datetime
 import logging
 from typing import List
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+
+from appCalendar.views import allTasks
+from toDoList.forms import TaskForm
 
 logger = logging.getLogger(__name__)
 
@@ -58,8 +62,6 @@ def mainPageRender(request, next_months: str, month: int, year: int):
                    'month': month, 'year': year})
 
 
-# new format:
-
 def changeMonthFormat(monthList: List, monthNumber: int, year: int):
     for week in monthList:
         for day in range(0, len(week)):
@@ -69,4 +71,16 @@ def changeMonthFormat(monthList: List, monthNumber: int, year: int):
 
 @login_required
 def addTaskPageRender(request, month, day, year):
-    return render(request, 'addTaskPage.html', {'user': request.CustomUser, 'year': year, 'month': month, 'day': day})
+    initial_data = {
+        'date': datetime.date(year, month, day)
+    }
+    form = TaskForm(initial=initial_data)
+    return render(request, 'addTaskPage.html',
+                  {'user': request.CustomUser, 'year': year,
+                   'month': month, 'day': day, 'form': form})
+
+
+@login_required
+def userTasksPageRender(request, month, year):
+    return render(request, 'userTasksPage.html', {'user': request.CustomUser, 'tasks': allTasks(request),
+                                                  'month': month, 'year': year})

@@ -16,6 +16,7 @@ header
 {
     grid-row: 1;
     text-align: center;
+    font-size: 150%;
 }
 
 main
@@ -55,19 +56,55 @@ main
 
 .addTaskButton
 {
-    width: 4%;
-    height: 30px;
+    width: 12%;
+    height: 55px;
     background-color: #4cb03f;
-    border-radius: 12px;
+    border-radius: 20px;
     font-weight: 900;
-    /* font-size: 25px; */
+    font-size: 150%;
     color: #efefef;
     border: 1px solid white;
     text-align: center;
+    margin-left: 5%;
 }
 
 .addTaskButton:hover
 {
     background-color: #a9ff9d;
     color: #484848;
+}
+
+body input
+{
+    width: 20%;
+    height: 50px;
+    border-radius: 20px;
+    font-size: 125%;
+    background-color: #a4a4a4;
+    color: white;
+}
+
+body input:hover
+{
+    background-color:  #c8c8c8;
+}
+
+body input:focus
+{
+    background-color:  #c8c8c8;
+}
+
+form
+{
+    display: flexbox; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    margin-right: 10%;
+    margin-top: 7.5%;
+}
+
+form p
+{
+    font-size: 200%;
 }

@@ -8,25 +8,19 @@
 <body>
     <header>
         <h1>            
-            {% if day < 10 and month < 10 %}
-                0{{day}} / 0{{month}} / {{year}} 
-            {% elif day < 10 %}
-                0{{day}} / {{month}} / {{year}}
-            {% elif month < 10 %}
-                {{day}} / 0{{month}} / {{year}}
-            {% else %}
-                {{day}} / {{month}} / {{year}}
-            {% endif %}
+            {{month}} / {{day}} / {{year}}
         </h1>
     </header>
     <main>
         <section id="left">
             <a href="{% url 'main_page' next_months=0 month=month year=year %}" class="leftButtons">Main page</a>
-            <a href="youtube.com" class="leftButtons">My tasks</a>
+            <a href="{% url 'user_tasks_page' month=month year=year %}" class="leftButtons">My tasks</a>
             <a href="{% url 'sign_out' %}" class="leftButtons">Sign out</a>
         </section>
         <section id="right">
-            <form action="youtube.com">
+            <form method="post" action="{% url 'new_task' currentPageMonth=month currentPageDay=day currentPageYear=year %}">
+                {% csrf_token %}
+                {{ form.as_p }}
                 <button type="submit" class="addTaskButton">Save</button>
             </form>
         </section>

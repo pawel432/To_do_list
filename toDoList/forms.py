@@ -16,5 +16,5 @@ class SignInForm(forms.Form):
 
 class TaskForm(forms.Form):
     title = forms.CharField(label='Title', max_length=150)
-    date = forms.DateField(label='Date')
-    time = forms.TimeField(label='Time')
+    date = forms.DateField(label='Date', widget=forms.DateInput(attrs={'type': 'date'}))
+    time = forms.TimeField(label='Time', widget=forms.TimeInput(attrs={'type': 'time'}))

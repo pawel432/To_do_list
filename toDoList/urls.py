@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from appCalendar.renderViews import mainPageRender, addTaskPageRender
+from appCalendar.renderViews import mainPageRender, addTaskPageRender, userTasksPageRender
+from appCalendar.views import newTask
 from appUser.renderViews import startPageRender, signRender, signErrorRender
 from appUser.views import signIn, signUp, signOut
 
@@ -31,5 +32,7 @@ urlpatterns = [
     path('signerror/<str:template>/', signErrorRender, name='sign_error_render'),
     path('mainpage/<str:next_months>/<int:month>/<int:year>/', mainPageRender, name='main_page'),
     path('addtaskpage/<int:month>/<int:day>/<int:year>/', addTaskPageRender, name='add_task_page'),
+    path('newtask/<int:currentPageMonth>/<int:currentPageDay>/<int:currentPageYear>/', newTask, name='new_task'),
+    path('usertaskspage/<int:month>/<int:year>/', userTasksPageRender, name='user_tasks_page'),
     path('logout/', signOut, name='logout'),
 ]
