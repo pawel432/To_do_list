@@ -13,7 +13,7 @@
             </h1>
         </header>
         <main>
-            <div class="container">
+            <!-- <div class="container">
                 <a href="{% url 'sign_render' template='signIn.html'%}">
                     <div class="buttonClass">
                         <p>Sign In</p>
@@ -23,6 +23,14 @@
                     <div class="buttonClass">
                         <p>Sign Up</p>
                     </div>
+                </a>
+            </div> -->
+            <div class="container">
+                <a href="{% url 'sign_render' template='signIn.html'%}" id="leftButton" class="buttonClass">
+                    <p>Sign In</p>
+                </a>
+                <a href="{% url 'sign_render' template='signUp.html'%}" id="rightButton" class="buttonClass">
+                    <p>Sign Up</p>
                 </a>
             </div>
 

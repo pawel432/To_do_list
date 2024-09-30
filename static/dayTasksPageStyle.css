@@ -1,0 +1,92 @@
+body
+{
+    display: grid;
+    grid-template-rows: 15% 85%;
+    height: 900px;
+    background-color: black;
+    color: white;
+}
+
+body a
+{
+    text-decoration: none;
+}
+
+header
+{
+    grid-row: 1;
+    text-align: center;
+    font-size: 120%;
+}
+
+header a
+{
+    color: #4cb03f;
+}
+
+header a:hover
+{
+    color: #cdffc6;
+}
+
+main
+{
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 5% 95%;
+}
+
+#left
+{
+    grid-column: 1;
+}
+
+#right
+{
+    grid-column: 2;
+    margin-top: 3%;
+}
+
+.leftButtons
+{
+    display: block;
+    margin-top: 35%;
+    margin-left: 5%;
+    font-weight: 900;
+    font-size: 90%;
+    color: rgb(207, 207, 207);
+    text-decoration: none;
+    position: relative;
+    top: 18%;
+}
+
+.leftButtons:hover
+{
+    color: #4cb03f;
+}
+
+.task
+{
+    display: inline-flex;
+    width: 15%;
+    height: 6%;
+    text-align: center;
+    border: 1px solid #cdffc6;
+    color: white;
+    border-radius: 10px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 2%;
+    margin-right: 1%;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;          
+    white-space: nowrap;       
+    text-overflow: ellipsis;   
+    padding: 0 0.5%;
+}
+
+.task:hover
+{
+    border: 1px solid #4cb03f;
+}

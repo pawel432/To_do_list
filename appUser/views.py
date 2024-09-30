@@ -1,6 +1,7 @@
 import datetime
 
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
 from appUser.models import CustomUser
@@ -55,6 +56,7 @@ def authorizeUser(request, username, password):
         return signErrorRender(request, "signIn.html", "Invalid password.")
 
 
+@login_required
 def signOut(request):
     logout(request)
     return redirect('home')

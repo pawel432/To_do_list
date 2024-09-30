@@ -1,7 +1,7 @@
 body
 {
     display: grid;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 20% 88%;
     height: 900px;
     background-color: black;
     color: white;
@@ -16,7 +16,17 @@ header
 {
     grid-row: 1;
     text-align: center;
-    font-size: 150%;
+}
+
+header a
+{
+    color: #4cb03f;
+    font-size: 100%;
+}
+
+header a:hover
+{
+    color: #cdffc6;
 }
 
 main
@@ -34,6 +44,11 @@ main
 #right
 {
     grid-column: 2;
+}
+
+#right a
+{
+    color: white;
 }
 
 .leftButtons
@@ -54,9 +69,14 @@ main
     color: #4cb03f;
 }
 
+#right p
+{
+    text-align: center;
+    margin-right: 5%;
+}
+
 .addTaskButton
 {
-    display: block;
     width: 12%;
     height: 55px;
     background-color: #4cb03f;
@@ -66,7 +86,7 @@ main
     color: #efefef;
     border: 1px solid white;
     text-align: center;
-    margin-left: 47%;
+    margin-left: 5%;
 }
 
 .addTaskButton:hover
@@ -101,13 +121,21 @@ form
     align-items: center; 
     justify-content: center; 
     text-align: center;
-    margin-right: 10%;
-    margin-top: 7.5%;
+    margin-right: 7.5%;
+    margin-top: 3%;
 }
-
-
 
 form p
 {
     font-size: 200%;
+    margin-left: 4.4%;
 }
+
+#title
+{
+    font-size: 125%;
+    white-space: normal;
+    width: 60%;
+    margin-left: 18%;
+}
+

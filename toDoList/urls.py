@@ -17,8 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from appCalendar.renderViews import mainPageRender, addTaskPageRender, userTasksPageRender
-from appCalendar.views import newTask
+from appCalendar.renderViews import mainPageRender, addTaskPageRender, userTasksPageRender, taskPageRender, \
+    dayTasksRender, confirmDeleteRender
+from appCalendar.views import newTask, editTask, deleteTask
 from appUser.renderViews import startPageRender, signRender, signErrorRender
 from appUser.views import signIn, signUp, signOut
 
@@ -32,7 +33,24 @@ urlpatterns = [
     path('signerror/<str:template>/', signErrorRender, name='sign_error_render'),
     path('mainpage/<str:next_months>/<int:month>/<int:year>/', mainPageRender, name='main_page'),
     path('addtaskpage/<int:month>/<int:day>/<int:year>/', addTaskPageRender, name='add_task_page'),
-    path('newtask/<int:currentPageMonth>/<int:currentPageDay>/<int:currentPageYear>/', newTask, name='new_task'),
+    path('daytasks/<int:month>/<int:day>/<int:year>/', dayTasksRender, name='day_tasks'),
+    path('newtask/<int:mainPageMonth>/<int:mainPageDay>/<int:mainPageYear>/', newTask, name='new_task'),
+    path('taskpage/<int:mainPageMonth>/<int:mainPageYear>/<int:taskId>/', taskPageRender,
+         name='task_page'),
+    path('taskpage/<int:mainPageMonth>/<int:mainPageYear>/<int:taskId>/<int:mainPageDay>/', taskPageRender,
+         name='task_page_with_day'),
+    path('edittask/<int:taskId>/<int:mainPageMonth>/<int:mainPageYear>/<str:templateName>/', editTask,
+         name='edit_task'),
+    path('edittask/<int:taskId>/<int:mainPageMonth>/<int:mainPageYear>/<str:templateName>/<int:mainPageDay>', editTask,
+         name='edit_task_with_day'),
+    path('deletetask/<int:taskId>/<int:mainPageMonth>/<int:mainPageYear>/<int:mainPageDay>', deleteTask,
+         name='delete_task_with_day'),
+    path('deletetask/<int:taskId>/<int:mainPageMonth>/<int:mainPageYear>/', deleteTask,
+         name='delete_task'),
+    path('confirmdeletetask/<int:taskId>/<int:mainPageMonth>/<int:mainPageYear>/<int:mainPageDay>', confirmDeleteRender,
+         name='confirm_delete_with_day'),
+    path('confirmdeletetask/<int:taskId>/<int:mainPageMonth>/<int:mainPageYear>/', confirmDeleteRender,
+         name='confirm_delete'),
     path('usertaskspage/<int:month>/<int:year>/', userTasksPageRender, name='user_tasks_page'),
     path('logout/', signOut, name='logout'),
 ]

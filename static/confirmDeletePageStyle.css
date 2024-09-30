@@ -16,7 +16,18 @@ header
 {
     grid-row: 1;
     text-align: center;
-    font-size: 150%;
+    font-size: 125%;
+}
+
+header a
+{
+    color: #4cb03f;
+    font-size: 100%;
+}
+
+header a:hover
+{
+    color: #cdffc6;
 }
 
 main
@@ -54,60 +65,49 @@ main
     color: #4cb03f;
 }
 
-.addTaskButton
+.container
+{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 12.5%;
+    width: 20%;
+    gap: 25%;
+    margin-left: 34.5%;
+    margin-top: 13%;
+}
+
+.buttonClass
 {
     display: block;
-    width: 12%;
-    height: 55px;
-    background-color: #4cb03f;
     border-radius: 20px;
     font-weight: 900;
     font-size: 150%;
     color: #efefef;
     border: 1px solid white;
+    text-decoration: none;
     text-align: center;
-    margin-left: 47%;
 }
 
-.addTaskButton:hover
+#leftButton
+{
+    grid-column: 1;
+    background-color: #4cb03f;
+}
+
+#leftButton:hover
 {
     background-color: #a9ff9d;
     color: #484848;
 }
 
-body input
+#rightButton
 {
-    width: 20%;
-    height: 50px;
-    border-radius: 20px;
-    font-size: 125%;
-    background-color: #a4a4a4;
-    color: white;
+    grid-column: 2;
+    background-color: #696969;
 }
 
-body input:hover
+#rightButton:hover
 {
-    background-color:  #c8c8c8;
-}
-
-body input:focus
-{
-    background-color:  #c8c8c8;
-}
-
-form
-{
-    display: flexbox; 
-    align-items: center; 
-    justify-content: center; 
-    text-align: center;
-    margin-right: 10%;
-    margin-top: 7.5%;
-}
-
-
-
-form p
-{
-    font-size: 200%;
+    background-color: #c2c2c2;
+    color: #484848;
 }

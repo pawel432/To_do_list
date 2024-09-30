@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <title>Confirm</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'confirmDeletePageStyle.css' %}">
+</head>
+<body>
+    <header>
+        <h1>
+            Do you want to delete this task? 
+        </h1>
+    </header>
+    <main>
+        <section id="left">
+            <a href="{% url 'main_page' next_months=0 month=mainPageMonth year=mainPageYear %}" class="leftButtons">Main page</a>
+            <a href="{% url 'user_tasks_page' month=mainPageMonth year=mainPageYear %}" class="leftButtons">My tasks</a>
+            <a href="{% url 'sign_out' %}" class="leftButtons">Sign out</a>
+        </section>
+        <section id="right">
+            <div class="container">
+                {% with taskid=task.id %}
+                {% if day %}
+                <a href="{% url 'delete_task_with_day' taskId=taskid mainPageMonth=mainPageMonth mainPageYear=mainPageYear mainPageDay=day %}" id="leftButton" class="buttonClass">
+                    <p>Delete task</p>
+                </a>
+                <a href="{% url 'day_tasks' month=mainPageMonth day=day year=mainPageYear %}" id="rightButton" class="buttonClass">
+                    <p>Cancel</p>
+                </a>
+                {% else %}
+                <a href="{% url 'delete_task' taskId=taskid mainPageMonth=mainPageMonth mainPageYear=mainPageYear %}" id="leftButton" class="buttonClass">
+                    <p>Delete task</p>
+                </a>
+                <a href="{% url 'user_tasks_page' month=mainPageMonth year=mainPageYear %}" id="rightButton" class="buttonClass">
+                    <p>Cancel</p>
+                </a>
+                {% endif %}
+                {% endwith %}
+            </div>
+        </section>
+    </main>
+</body>
+</html>

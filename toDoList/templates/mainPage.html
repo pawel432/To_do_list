@@ -23,7 +23,7 @@
             {% for week in date %}
                 {% for day in week %}
                     {% with  month=day.1 day=day.0 year=day.2 %}
-                        <a href="{% url 'add_task_page' month=month day=day year=year %}"><div class="day">{{day}}</div></a>
+                        <a href="{% url 'day_tasks' month=month day=day year=year %}"><div class="day">{{day}}</div></a>
                     {% endwith %}
                 {% endfor %}
             {% endfor %}

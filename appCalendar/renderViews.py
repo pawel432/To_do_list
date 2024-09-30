@@ -4,9 +4,9 @@ import logging
 from typing import List
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from appCalendar.views import allTasks
+from appCalendar.models import Task
 from toDoList.forms import TaskForm
 
 logger = logging.getLogger(__name__)
@@ -82,5 +82,60 @@ def addTaskPageRender(request, month, day, year):
 
 @login_required
 def userTasksPageRender(request, month, year):
-    return render(request, 'userTasksPage.html', {'user': request.CustomUser, 'tasks': allTasks(request),
+    return render(request, 'userTasksPage.html', {'user': request.CustomUser,
+                                                  'tasks': Task.objects.filter(user=request.CustomUser).order_by('date',
+                                                                                                                 'time'),
                                                   'month': month, 'year': year})
+
+
+@login_required
+def dayTasksRender(request, month, year, day):
+    return render(request, 'dayTasks.html', {'user': request.CustomUser,
+                                             'tasks': Task.objects.filter(date=datetime.date(year, month, day),
+                                                                          user=request.CustomUser).order_by('date',
+                                                                                                            'time'),
+                                             'month': month, 'year': year, 'day': day})
+
+
+@login_required
+def taskPageRender(request, mainPageMonth, mainPageYear, taskId, mainPageDay=None):
+    try:
+        task = Task.objects.get(id=taskId)
+    except Task.DoesNotExist:
+        return ifTaskDoesNotExist(mainPageMonth, mainPageYear, mainPageDay)
+    initial_data = {
+        'title': task.title,
+        'date': datetime.date(task.date.year, task.date.month, task.date.day),
+        'time': task.time.strftime("%H:%M")
+    }
+    form = TaskForm(initial=initial_data)
+    if mainPageDay is not None:
+        return render(request, 'taskPage.html',
+                      {'form': form, 'task': task,
+                       'mainPageMonth': mainPageMonth, 'mainPageYear': mainPageYear, 'day': mainPageDay})
+    else:
+        return render(request, 'taskPage.html',
+                      {'form': form, 'task': task,
+                       'mainPageMonth': mainPageMonth, 'mainPageYear': mainPageYear})
+
+
+@login_required
+def confirmDeleteRender(request, taskId, mainPageMonth, mainPageYear, mainPageDay=None):
+    try:
+        task = Task.objects.get(id=taskId)
+    except Task.DoesNotExist:
+        return ifTaskDoesNotExist(mainPageMonth, mainPageYear, mainPageDay)
+    if mainPageDay is not None:
+        return render(request, 'confirmDeletePage.html', {'task': task,
+                                                          'mainPageMonth': mainPageMonth, 'mainPageYear': mainPageYear,
+                                                          'day': mainPageDay})
+    else:
+        return render(request, 'confirmDeletePage.html', {'task': task,
+                                                          'mainPageMonth': mainPageMonth, 'mainPageYear': mainPageYear})
+
+
+def ifTaskDoesNotExist(mainPageMonth, mainPageYear, mainPageDay=None):
+    if mainPageDay is not None:
+        return redirect('day_tasks', month=mainPageMonth, year=mainPageYear, day=mainPageDay)
+    else:
+        return redirect('user_tasks_page', month=mainPageMonth, year=mainPageYear)

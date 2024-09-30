@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <title>Task</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'taskPageStyle.css' %}">
+</head>
+<body>
+    <header>
+        <h1>            
+            {{ task.date }}
+        </h1>
+        <h2>
+            {{ task.time }}
+        </h2>
+        {% with taskid=task.id %}
+            {% if day %}
+                <a href="{% url 'confirm_delete_with_day' taskId=taskid mainPageMonth=mainPageMonth mainPageYear=mainPageYear mainPageDay=day %}">Delete</a>
+            {% else%}
+                <a href="{% url 'confirm_delete' taskId=taskid mainPageMonth=mainPageMonth mainPageYear=mainPageYear %}">Delete</a>
+            {% endif %}
+        {% endwith %}
+    </header>
+    <main>
+        <section id="left">
+            <a href="{% url 'main_page' next_months=0 month=mainPageMonth year=mainPageYear %}" class="leftButtons">Main page</a>
+            <a href="{% url 'user_tasks_page' month=mainPageMonth year=mainPageYear %}" class="leftButtons">My tasks</a>
+            <a href="{% url 'sign_out' %}" class="leftButtons">Sign out</a>
+        </section>
+        <section id="right">
+            <p id="title">{{ task.title }}</p>
+                {% with taskid=task.id %}
+                    {% if day %}
+                        <form method="post" action="{% url 'edit_task_with_day' taskId=taskid mainPageMonth=mainPageMonth mainPageYear=mainPageYear templateName='dayTasks.html' mainPageDay=day %}">
+                    {% else %}
+                        <form method="post" action="{% url 'edit_task' taskId=taskid mainPageMonth=mainPageMonth mainPageYear=mainPageYear templateName='userTasksPage.html' %}">
+                    {% endif %}
+                {% endwith %}
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="addTaskButton">Save</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

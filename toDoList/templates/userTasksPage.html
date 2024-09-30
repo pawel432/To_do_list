@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     {% load static %}
-    <title>Add task</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'addTaskPageStyle.css' %}">
+    <title>My tasks</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'userTasksPageStyle.css' %}">
 </head>
 <body>
     <header>
         <h1>            
-            {{month}} / {{day}} / {{year}}
+            {{user.first_name}} tasks:
         </h1>
     </header>
     <main>
@@ -18,11 +18,7 @@
             <a href="{% url 'sign_out' %}" class="leftButtons">Sign out</a>
         </section>
         <section id="right">
-            <form method="post" action="{% url 'new_task' mainPageMonth=month mainPageDay=day mainPageYear=year %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="addTaskButton">Save</button>
-            </form>
+                {% for task in tasks %}<a href="{% url 'task_page' mainPageMonth=month mainPageYear=year taskId=task.id %}"><div class="task">{{task.title}}</div></a>{% endfor %}
         </section>
     </main>
 </body>

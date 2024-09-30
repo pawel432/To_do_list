@@ -1,6 +1,3 @@
-import calendar
-import datetime
-
 from django.shortcuts import render
 
 from toDoList.forms import SignInForm, SignUpForm

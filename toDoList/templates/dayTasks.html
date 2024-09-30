@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     {% load static %}
-    <title>Add task</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'addTaskPageStyle.css' %}">
+    <title>{{month}} / {{day}} / {{year}}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'dayTasksPageStyle.css' %}">
 </head>
 <body>
     <header>
         <h1>            
             {{month}} / {{day}} / {{year}}
         </h1>
+        <a href="{% url 'add_task_page' month=month day=day year=year %}">Add task</a>
     </header>
     <main>
         <section id="left">
@@ -18,11 +19,12 @@
             <a href="{% url 'sign_out' %}" class="leftButtons">Sign out</a>
         </section>
         <section id="right">
-            <form method="post" action="{% url 'new_task' mainPageMonth=month mainPageDay=day mainPageYear=year %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="addTaskButton">Save</button>
-            </form>
+            {% for task in tasks %}
+                    <a href="{% url 'task_page_with_day' mainPageMonth=month mainPageYear=year taskId=task.id mainPageDay=day %}"><div class="task">{{task.title}}</div></a>
+            {% endfor %}
+
+
+       
         </section>
     </main>
 </body>
