@@ -1,12 +1,12 @@
 import calendar
 import datetime
 import logging
-from typing import List
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 from appCalendar.models import Task
+from appCalendar.views import ifTaskDoesNotExist, changeMonthFormat, areTasksExist
 from toDoList.forms import TaskForm
 
 logger = logging.getLogger(__name__)
@@ -57,16 +57,10 @@ def mainPageRender(request, next_months: str, month: int, year: int):
             current_month_last_week[i][1] = next_month_first_week[i][1]
             current_month_last_week[i][2] = next_month_first_week[i][2]
     current_month[cur_month_last_week_index] = current_month_last_week
+    areTasksExist(current_month)
     return render(request, 'mainPage.html',
                   {'date': current_month,
-                   'month': month, 'year': year})
-
-
-def changeMonthFormat(monthList: List, monthNumber: int, year: int):
-    for week in monthList:
-        for day in range(0, len(week)):
-            oldDayVar = week[day]
-            week[day] = [oldDayVar, monthNumber, year]
+                   'month': month, 'year': year, 'currentDate': datetime.datetime.now().date()})
 
 
 @login_required
@@ -81,10 +75,15 @@ def addTaskPageRender(request, month, day, year):
 
 
 @login_required
-def userTasksPageRender(request, month, year):
+def userTasksPageRender(request, month, year, filter):
+    if filter == "default":
+        tasks = Task.objects.filter(user=request.CustomUser).order_by('date',
+                                                                      'time')
+    else:
+        tasks = Task.objects.filter(user=request.CustomUser, date=datetime.datetime.now().date()).order_by('date',
+                                                                                                           'time')
     return render(request, 'userTasksPage.html', {'user': request.CustomUser,
-                                                  'tasks': Task.objects.filter(user=request.CustomUser).order_by('date',
-                                                                                                                 'time'),
+                                                  'tasks': tasks,
                                                   'month': month, 'year': year})
 
 
@@ -132,10 +131,3 @@ def confirmDeleteRender(request, taskId, mainPageMonth, mainPageYear, mainPageDa
     else:
         return render(request, 'confirmDeletePage.html', {'task': task,
                                                           'mainPageMonth': mainPageMonth, 'mainPageYear': mainPageYear})
-
-
-def ifTaskDoesNotExist(mainPageMonth, mainPageYear, mainPageDay=None):
-    if mainPageDay is not None:
-        return redirect('day_tasks', month=mainPageMonth, year=mainPageYear, day=mainPageDay)
-    else:
-        return redirect('user_tasks_page', month=mainPageMonth, year=mainPageYear)

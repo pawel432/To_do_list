@@ -10,6 +10,7 @@ body
 body a
 {
     text-decoration: none;
+    cursor: pointer;
 }
 
 header
@@ -123,4 +124,35 @@ main
 .leftButtons:hover
 {
     color: #4cb03f;
+}
+
+#currentDayStyle
+{
+    color: #4cb03f;
+}
+
+.dayWithTasks
+{
+    border: 2px solid #cdffc6;
+    background-color: black;
+    font-weight: 900;
+    text-align: center;
+    display: inline-block;
+    width: 11.5%;
+    height: 15%;
+    margin: 1%;
+    border-radius: 25px;
+    color: blue;
+}
+
+
+.dayWithTasks::first-line
+{
+    font-size: 120%;
+}
+
+.dadayWithTasksy:hover
+{
+    border: 2px solid #4cb03f;
+    background-color: black;
 }

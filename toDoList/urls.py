@@ -51,6 +51,6 @@ urlpatterns = [
          name='confirm_delete_with_day'),
     path('confirmdeletetask/<int:taskId>/<int:mainPageMonth>/<int:mainPageYear>/', confirmDeleteRender,
          name='confirm_delete'),
-    path('usertaskspage/<int:month>/<int:year>/', userTasksPageRender, name='user_tasks_page'),
+    path('usertaskspage/<int:month>/<int:year>/<str:filter>/', userTasksPageRender, name='user_tasks_page'),
     path('logout/', signOut, name='logout'),
 ]

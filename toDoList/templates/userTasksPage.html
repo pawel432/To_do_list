@@ -10,11 +10,12 @@
         <h1>            
             {{user.first_name}} tasks:
         </h1>
+        <a href="{% url 'user_tasks_page' month=month year=year filter='todayTasks' %}">Show today's tasks</a>
     </header>
     <main>
         <section id="left">
             <a href="{% url 'main_page' next_months=0 month=month year=year %}" class="leftButtons">Main page</a>
-            <a href="{% url 'user_tasks_page' month=month year=year %}" class="leftButtons">My tasks</a>
+            <a href="{% url 'user_tasks_page' month=month year=year filter='default' %}" class="leftButtons">My tasks</a>
             <a href="{% url 'sign_out' %}" class="leftButtons">Sign out</a>
         </section>
         <section id="right">

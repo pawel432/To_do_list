@@ -22,6 +22,7 @@ header
 header a
 {
     color: #4cb03f;
+    cursor: pointer;
 }
 
 header a:hover

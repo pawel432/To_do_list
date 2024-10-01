@@ -16,14 +16,27 @@
     <main>
         <section id="left">
             <a href="{% url 'main_page' next_months=0 month=month year=year %}" class="leftButtons">Main page</a>
-            <a href="{% url 'user_tasks_page' month=month year=year %}" class="leftButtons">My tasks</a>
+            <a href="{% url 'user_tasks_page' month=month year=year filter='default' %}" class="leftButtons">My tasks</a>
             <a href="{% url 'sign_out' %}" class="leftButtons">Sign out</a>
         </section>
         <section id="right">
             {% for week in date %}
                 {% for day in week %}
-                    {% with  month=day.1 day=day.0 year=day.2 %}
-                        <a href="{% url 'day_tasks' month=month day=day year=year %}"><div class="day">{{day}}</div></a>
+                    {% with  className='day' boolVar=day.3 month=day.1 day=day.0 year=day.2 currentDay=currentDate.day currentMonth=currentDate.month currentYear=currentDate.year %}
+                        {% if boolVar == True %}
+                            {% if day == currentDay and month == currentMonth and year == currentYear %}
+                                <a href="{% url 'day_tasks' month=month day=day year=year %}"><div class="dayWithTasks" id="currentDayStyle">{{day}}</div></a>
+                            {% else %}
+                                <a href="{% url 'day_tasks' month=month day=day year=year %}"><div class="dayWithTasks">{{day}}</div></a>
+                            {% endif %}
+                        {% else %}
+                            {% if day == currentDay and month == currentMonth and year == currentYear %}
+                                <a href="{% url 'day_tasks' month=month day=day year=year %}"><div class="day" id="currentDayStyle">{{day}}</div></a>
+                            {% else %}
+                                <a href="{% url 'day_tasks' month=month day=day year=year %}"><div class="day">{{day}}</div></a>
+                            {% endif %}
+                        {% endif %}
+
                     {% endwith %}
                 {% endfor %}
             {% endfor %}

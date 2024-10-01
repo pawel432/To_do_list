@@ -1,7 +1,7 @@
 body
 {
     display: grid;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 15% 85%;
     height: 900px;
     background-color: black;
     color: white;
@@ -10,12 +10,24 @@ body
 body a
 {
     text-decoration: none;
+    cursor: pointer;
 }
 
 header
 {
     grid-row: 1;
     text-align: center;
+}
+
+header a
+{
+    color: #4cb03f;
+    font-size: 100%;
+}
+
+header a:hover
+{
+    color: #cdffc6;
 }
 
 main

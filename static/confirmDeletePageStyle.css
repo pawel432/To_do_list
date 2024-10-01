@@ -10,6 +10,7 @@ body
 body a
 {
     text-decoration: none;
+    cursor: pointer;
 }
 
 header
@@ -86,6 +87,7 @@ main
     border: 1px solid white;
     text-decoration: none;
     text-align: center;
+    cursor: pointer;
 }
 
 #leftButton
